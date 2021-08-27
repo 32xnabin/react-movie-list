@@ -1,3 +1,3 @@
 export const App = () => {
-  return <h1>react movie list</h1>
+  return <p className="text-red-600 text-2xl">react movie list</p>
 }
