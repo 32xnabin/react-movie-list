@@ -1,11 +1,12 @@
 import React from 'react'
 import { getMoviesList } from './services/index'
 import ListItem from './components/ListItem'
-import { movie } from './services/api.types'
+import movie from './services/api.types'
 export const App = () => {
   const [movies, setMovies] = React.useState<movie[]>()
   React.useEffect(() => {
     getMoviesList().then((res) => {
+      console.log(res)
       setMovies(res)
     })
   }, [])

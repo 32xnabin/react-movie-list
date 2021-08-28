@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { movie } from './api.types'
+import movie from './api.types'
 const api_key = 'd20d120d9dd9db57afb22f30dc381d46'
 const image_base_url = 'https://image.tmdb.org/t/p/w500/'
 const search_api_url = 'https://api.themoviedb.org/3/search/person'

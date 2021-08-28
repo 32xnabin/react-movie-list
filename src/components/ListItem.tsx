@@ -1,5 +1,5 @@
 import React from 'react'
-import { movie } from '../services/api.types'
+import movie from '../services/api.types'
 const ListItem: React.FC<movie> = ({
   title,
   tagline,
@@ -8,16 +8,42 @@ const ListItem: React.FC<movie> = ({
   description,
 }) => {
   const [showDetails, setShowDetails] = React.useState<boolean>(false)
+  const [showMessage, setShowMessage] = React.useState<boolean>(false)
+  const showMovieDetails = () => {
+    setShowDetails(true)
+    setShowMessage(false)
+  }
+  const handleClose = () => {
+    setShowDetails(false)
+    setShowMessage(false)
+  }
+  const addToFavorites = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation()
+    setShowMessage(true)
+  }
+  const onKeyPressHandler = () => {
+    return null
+  }
 
   return (
     <>
-      <div className="relative hover:shadow-lg px-1 ">
+      <div className="relative hover:shadow-lg px-1 " data-testid="list-item">
         {showDetails && (
           <div className="col-span-4 h-full text-right px-2">
-            <button onClick={() => setShowDetails(false)}>X</button>
+            <button data-testid="close" onClick={handleClose}>
+              X
+            </button>
           </div>
         )}
-        <button onClick={() => setShowDetails(true)}>
+        <div
+          onKeyPress={onKeyPressHandler}
+          role="button"
+          tabIndex={0}
+          onClick={showMovieDetails}
+          data-testid="open"
+        >
           <div>
             <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-1 gap-1  my-4 ">
               <div className="col-span-1">
@@ -36,13 +62,23 @@ const ListItem: React.FC<movie> = ({
                 <p className="text-black text-base mb-4 text-left">
                   {description}
                 </p>
-                <button className="my-4 bg-green-600 px-2 py-1 text-white rounded-md">
+                <button
+                  data-testid="fav"
+                  className="my-4 bg-green-600 px-2 py-1 text-white rounded-md"
+                  onClick={addToFavorites}
+                >
                   ADD TO FAVORITE
                 </button>
+                {showMessage && (
+                  <p className=" bg-green-600 opacity-60 w-full text-white text-base mb-4 text-left py-4 px-4 transition delay-150 duration-300 ease-in-out ...">
+                    <span className="text-2xl">&#10003;</span>
+                    Added to Favorites
+                  </p>
+                )}
               </div>
             )}
           </div>
-        </button>
+        </div>
       </div>
     </>
   )
