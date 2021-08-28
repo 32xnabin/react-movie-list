@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  movie:
+    build:
+      context: .
+    volumes:
+      - .:/core
+    ports:
+      - 3000:3000
+    image: movie:react
+    container_name: react_container
+    command: npm start
