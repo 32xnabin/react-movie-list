@@ -9,18 +9,21 @@ export const App = () => {
       setMovies(res)
     })
   }, [])
+
   return (
     <div className="lg:w-1/4 md:w-1/ sm:w-1/2 mx-auto">
       {movies?.map((movie, index) => (
-        <div key={index}>
-          <ListItem
-            title={movie.title}
-            tagline={movie.tagline}
-            year={movie.year}
-            image={movie.image}
-            description={movie.description}
-          />
-        </div>
+        <>
+          <div key={index} className="relative">
+            <ListItem
+              title={movie.title}
+              tagline={movie.tagline}
+              year={movie.year}
+              image={movie.image}
+              description={movie.description}
+            />
+          </div>
+        </>
       ))}
     </div>
   )
