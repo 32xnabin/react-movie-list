@@ -10,7 +10,7 @@ export const App = () => {
     })
   }, [])
   return (
-    <div className="text-center lg:w-1/4 md:w-1/4 sm:w-1/2">
+    <div className="lg:w-1/4 md:w-1/4 sm:w-1/2 mx-auto text-left">
       {movies?.map((movie, index) => (
         <div key={index}>
           <ListItem
