@@ -1,5 +1,6 @@
 import React from 'react'
 import movie from '../services/api.types'
+import { animated, useTransition } from 'react-spring'
 const ListItem: React.FC<movie> = ({
   title,
   tagline,
@@ -27,9 +28,24 @@ const ListItem: React.FC<movie> = ({
     return null
   }
 
+  const transition = useTransition(showMessage === true, null, {
+    from: {
+      opacity: 0,
+      transform: 'translateY(100%)',
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translateY(0%)',
+    },
+    leave: {
+      opacity: 0,
+      transform: 'translateY(100%)',
+    },
+  })
+
   return (
     <>
-      <div className="relative hover:shadow-lg px-1 " data-testid="list-item">
+      <div className="relative hover:shadow-lg px-1" data-testid="list-item">
         {showDetails && (
           <div className="col-span-4 h-full text-right px-2">
             <button data-testid="close" onClick={handleClose}>
@@ -69,11 +85,31 @@ const ListItem: React.FC<movie> = ({
                 >
                   ADD TO FAVORITE
                 </button>
-                {showMessage && (
-                  <p className=" bg-green-600 opacity-60 w-full text-white text-base mb-4 text-left py-4 px-4 transition delay-150 duration-300 ease-in-out ...">
-                    <span className="text-2xl">&#10003;</span>
-                    Added to Favorites
-                  </p>
+                {transition.map(
+                  ({ item, key, props }) =>
+                    item && (
+                      <animated.div
+                        className="Settings__overlay"
+                        key={key}
+                        style={{ opacity: props.opacity }}
+                      >
+                        <animated.div
+                          className="Settings"
+                          style={{ transform: props.transform }}
+                          aria-modal="true"
+                          role="dialog"
+                          tabIndex={-1}
+                          data-reach-dialog-content=""
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          {' '}
+                          <p className="bg-green-600 opacity-60 w-full text-white text-base mb-4 text-left py-4 px-4 transition delay-150 duration-300 ease-in-out ...">
+                            <span className="text-2xl">&#10003;</span>
+                            Added to Favorites
+                          </p>
+                        </animated.div>
+                      </animated.div>
+                    )
                 )}
               </div>
             )}
