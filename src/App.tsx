@@ -12,7 +12,7 @@ export const App = () => {
   }, [])
 
   return (
-    <div className="lg:w-1/4 md:w-1/ sm:w-1/2 mx-auto">
+    <div className="w-2/3 lg:w-1/4 md:w-1/4  mx-auto">
       {movies?.map((movie, index) => (
         <>
           <div key={index} className="relative">
