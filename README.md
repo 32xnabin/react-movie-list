@@ -28,7 +28,8 @@ npm start
 ```
 npm run test:watch
 ```
-
+in the prompt press a to run all test
+(the test is really basic but is configured to scale later)
 # Docker
 ```
 docker build --tag react .
