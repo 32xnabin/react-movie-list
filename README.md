@@ -1,5 +1,5 @@
 # react-movie-list
-(for simplicity I have not used .env file to have few things like api and api urls)
+(for simplicity I have not used .env file to have few things like api key and api urls)
 - Webpack and essentials configuration done manually
 - tailwindcss for styling framework
 - eslint and prettier for linting
