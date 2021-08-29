@@ -37,10 +37,9 @@ docker build --tag react .
 ```
 docker-compose run movie
 ```
+# site deployed to netlify
 
-
-
-
+https://gallant-yonath-916661.netlify.app/
 
 
 
